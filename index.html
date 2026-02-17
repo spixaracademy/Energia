@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <h1>¿Quién necesita energía?</h1>
+        <p>Arrastra la energía a los objetos correctos para “encender” a Pixi.</p>
+      </div>
+      <div class="hud">
+        <div class="hudCard">
+          <div class="hudLabel">Progreso</div>
+          <div class="hudValue"><span id="score">0</span>/<span id="total">0</span></div>
+        </div>
+        <button id="resetBtn" class="btn">Reiniciar</button>
+      </div>
+    </header>
+    <main class="stage" id="stage">
+      <!-- Pixi panel -->
+      <section class="pixiPanel">
+        <div class="pixiFrame">
+          <img id="pixiFace" class="pixiFace" src="assets/pixi_normal.png" alt="Pixi" />
+          <div class="pixiGlow" aria-hidden="true"></div>
+        </div>
+        <div class="dialog">
+          <div class="dialogTitle">Pixi dice:</div>
+          <div class="dialogText" id="dialogText">¡Dame energía para funcionar! ⚡</div>
+        </div>
+      </section>
+
+      <!-- Game board -->
+      <section class="board" id="board">
+        <div class="boardHeader">
+          <div class="boardTitle">Objetos</div>
+          <div class="boardHint">Suelta la energía encima del objeto.</div>
+        </div>
+
+        <div class="grid" id="grid">
+          <!-- Se llena con JS -->
+        </div>
+      </section>
+
+      <!-- Draggable energy -->
+      <div class="energyDock">
+        <div class="energyLabel">Energía</div>
+        <div class="energyWrap">
+          <img id="energy" class="energy" src="assets/energy_icon.png" alt="Energía" draggable="false" />
+          <div class="energyPulse" aria-hidden="true"></div>
+        </div>
+        <div class="miniHint">Tip: si fallas, Pixi te lo explica 😉</div>
+      </div>
+
+      <!-- Watermark -->
+      
+    </main>
+
+    
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
