@@ -128,6 +128,7 @@ function makeClone() {
   clone.style.width = ui.energy.getBoundingClientRect().width + "px";
   clone.style.zIndex = "9999";
   clone.style.pointerEvents = "none";
+  clone.style.transition = "none";
   clone.style.transform = "translate(-9999px,-9999px)";
   document.body.appendChild(clone);
   return clone;
