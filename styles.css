@@ -5,25 +5,30 @@
 
   --bg1:#11002a;
   --bg2:#060015;
-  --card: rgba(255,255,255,.06);
-  --stroke: rgba(255,255,255,.10);
+  --card: rgba(255,255,255,.03);
+  --stroke: rgba(255,255,255,.15); /* Borde un poco más visible */
   --text: rgba(255,255,255,.92);
   --muted: rgba(255,255,255,.72);
-  --shadow: 0 18px 50px rgba(0,0,0,.45);
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.104); /* Sombra más intensa para dar profundidad */
+  
+  /* NUEVA VARIABLE: Color de panel oscuro y poco transparente */
+  --panel-bg: rgba(15, 22, 33, 0.88); 
 }
 
 *{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0;
+body {
+  margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-  color:var(--text);
+  color: var(--text);
   background:
     radial-gradient(900px 500px at 15% 15%, rgba(0,255,239,.18), transparent 60%),
     radial-gradient(700px 400px at 85% 20%, rgba(1,241,93,.14), transparent 55%),
     radial-gradient(900px 600px at 50% 90%, rgba(56,0,131,.35), transparent 60%),
+    url('assets/fondo.png') no-repeat center center fixed,
     linear-gradient(180deg, var(--bg1), var(--bg2));
-  overflow-x:hidden;
+  background-size: cover;
+  overflow-x: hidden;
 }
 
 .app{max-width:1200px;margin:0 auto;padding:18px 16px 26px}
@@ -31,7 +36,10 @@ body{
   display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
   padding:14px 14px 16px;
   border:1px solid var(--stroke);
-  background: linear-gradient(135deg, rgba(56,0,131,.35), rgba(0,255,239,.08));
+  /* MODIFICADO: Fondo oscuro ahumado */
+  background: linear-gradient(135deg, rgba(20, 25, 40, 0.6), rgba(10, 15, 25, 0.8));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius:18px;
   box-shadow: var(--shadow);
 }
@@ -53,7 +61,8 @@ body{
   padding:10px 12px;
   border-radius:14px;
   border:1px solid var(--stroke);
-  background: rgba(255,255,255,.05);
+  /* MODIFICADO: Más oscuro */
+  background: rgba(0,0,0,.35);
 }
 .hudLabel{font-size:12px;color:var(--muted)}
 .hudValue{font-size:16px;font-weight:800}
@@ -87,7 +96,10 @@ body{
 .pixiPanel, .board, .energyDock{
   border:1px solid var(--stroke);
   border-radius:18px;
-  background: rgba(255,255,255,.04);
+  /* MODIFICADO: Uso de la variable oscura y filtro de desenfoque */
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--shadow);
   position:relative;
   overflow:hidden;
@@ -98,7 +110,7 @@ body{
   position:relative;
   border-radius:18px;
   border:1px solid rgba(0,255,239,.25);
-  background: linear-gradient(180deg, rgba(0,255,239,.10), rgba(56,0,131,.20));
+  background: linear-gradient(180deg, rgba(0,255,239,.08), rgba(0,0,0,.40));
   padding:12px;
   display:flex;
   justify-content:center;
@@ -114,7 +126,7 @@ body{
 }
 .pixiGlow{
   position:absolute; inset:-30%;
-  background: radial-gradient(circle, rgba(0,255,239,.20), transparent 60%);
+  background: radial-gradient(circle, rgba(0,255,239,.15), transparent 60%);
   filter: blur(10px);
   animation: floatGlow 2.8s ease-in-out infinite;
 }
@@ -126,8 +138,8 @@ body{
   margin-top:12px;
   padding:12px 12px;
   border-radius:14px;
-  border:1px solid var(--stroke);
-  background: rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.45);
 }
 .dialogTitle{font-size:12px;color:var(--muted); margin-bottom:6px}
 .dialogText{font-size:14px; font-weight:700; line-height:1.25}
@@ -152,14 +164,15 @@ body{
 .card{
   position:relative;
   border-radius:16px;
-  border:1px solid rgba(255,255,255,.10);
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.12));
+  border:1px solid rgba(255,255,255,.08);
+  /* MODIFICADO: Un poco más oscuras para contrastar con el fondo ahumado */
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.35));
   overflow:hidden;
   padding:10px;
   min-height:140px;
   transition: transform .12s ease, border-color .12s ease;
 }
-.card:hover{transform: translateY(-2px); border-color: rgba(0,255,239,.30)}
+.card:hover{transform: translateY(-2px); border-color: rgba(0,255,239,.30); background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.25));}
 .card.drop-ok{border-color: rgba(1,241,93,.45); box-shadow: 0 0 0 2px rgba(1,241,93,.15) inset;}
 .card.drop-bad{border-color: rgba(255,80,120,.45); box-shadow: 0 0 0 2px rgba(255,80,120,.12) inset;}
 .card.done{opacity:.72}
@@ -170,7 +183,7 @@ body{
   padding:6px 10px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.20);
+  background: rgba(0,0,0,.40);
   color: var(--muted);
 }
 .badge.ok{border-color: rgba(1,241,93,.35); color: rgba(1,241,93,.95)}
@@ -184,7 +197,7 @@ body{
 .cardImg{
   max-height:92px;
   max-width:100%;
-  filter: drop-shadow(0 12px 18px rgba(0,0,0,.35));
+  filter: drop-shadow(0 12px 18px rgba(0,0,0,.55));
 }
 
 .energyDock{
@@ -209,7 +222,7 @@ body{
   touch-action:none;
   user-select:none;
   -webkit-user-drag:none;
-  filter: drop-shadow(0 14px 18px rgba(0,0,0,.35));
+  filter: drop-shadow(0 14px 18px rgba(0,0,0,.45));
   transition: transform .12s ease;
 }
 .energyPulse{
@@ -242,5 +255,3 @@ body{
   font-size:12px;
   text-align:center;
 }
-
-
